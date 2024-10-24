@@ -2,8 +2,10 @@ import React from "react";
 import { LOGO_URL } from "./utils/constant";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faUser } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
 
-const Header = () => {
+const Header = ({ setRunBtn, setStartTime, startBtn, setStartBtn }) => {
+  const time = moment(new Date().getTime()).format("hh:mm:ss A");
   return (
     <div className="p-14">
       <ul className="flex items-center justify-between">
@@ -16,13 +18,13 @@ const Header = () => {
           <label for="numbers">Geratenummer</label>
           <select
             id="numbers"
-            className="border border-black p-1 rounded-md bg-yellow-50"
+            className="border border-black p-1 rounded-md bg-yellow-50 cursor-pointer"
           >
             <option disabled>Select</option>
             <option value="12365478" selected>
               12365478
             </option>
-            <option value="2311232">2311232</option>
+            <option value="23112372">23112372</option>
             <option value="98777632">98777632</option>
             <option value="63575763">63575763</option>
             <option value="23239887">23239887</option>
@@ -34,7 +36,7 @@ const Header = () => {
           <label for="names">Bediener</label>
           <select
             id="names"
-            className="border border-black p-1 rounded-md bg-yellow-50"
+            className="border border-black p-1 rounded-md bg-yellow-50 cursor-pointer"
           >
             <option disabled>Select</option>
             <option value="Paramanathan Thamiliny">
@@ -48,8 +50,19 @@ const Header = () => {
             <option value="Varathan Thevi">Varathan Thevi</option>
           </select>
         </li>
-        <li className="flex gap-3 items-center">
-          <button className="bg-green-400 font-bold text-white p-2 rounded-md">
+        <li className="flex items-center">
+          <button
+            className={
+              startBtn
+                ? "bg-gray-200 font-bold text-black p-2 rounded-md"
+                : "bg-green-400 font-bold text-white p-2 rounded-md"
+            }
+            onClick={() => {
+              setRunBtn(true);
+              setStartBtn(true);
+              setStartTime(time);
+            }}
+          >
             START
           </button>
         </li>
